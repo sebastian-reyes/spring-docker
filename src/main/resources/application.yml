@@ -2,9 +2,9 @@ spring:
   application:
     name: spring-docker
   r2dbc:
-    url: r2dbc:mariadb://localhost:${DB_PORT}/db_docker_test?serverTimezone=UTC&createDatabaseIfNotExist=true
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: r2dbc:mariadb://mariadb_database:3306/db_docker_test?serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: sreyes
+    password: 54321
   sql:
     init:
       mode: always

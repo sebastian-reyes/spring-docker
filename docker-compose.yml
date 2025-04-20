@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  spring-docker-image:
+    image: spring-docker-image
+    container_name: spring-docker-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9002:9002"
+    networks:
+      - spring-network
+    depends_on:
+      - mariadb
+  mariadb:
+    image: mariadb
+    container_name: mariadb_database
+    environment:
+      MARIADB_ROOT_PASSWORD: 12345
+      MARIADB_DATABASE: db_docker_test
+      MYSQL_USER: sreyes
+      MYSQL_PASSWORD: 54321
+    ports:
+      - "3307:3306"
+    networks:
+      - spring-network
+    volumes:
+      - mariadb_volume:/var/lib/mariadb
+networks:
+  spring-network:
+volumes:
+  mariadb_volume:
